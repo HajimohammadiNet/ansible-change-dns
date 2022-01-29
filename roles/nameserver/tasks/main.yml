@@ -1,0 +1,25 @@
+- name: UBUNTU16.04 // Deploy interfaces template
+  become: yes
+  template:
+    src: roles/nameserver/templates/interfaces
+    dest: /etc/network/interfaces
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify:
+    - reload networking
+  when: ansible_distribution =='Ubuntu' and ansible_distribution_version == '16.04'
+
+- name: UBUNTU18.04 // Deploy netplan yaml
+  become: yes
+  template:
+    src: roles/nameserver/templates/50-cloud-init.yaml
+    dest: /etc/netplan/50-cloud-init.yaml
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  notify:
+    - apply netplan configuration
+  when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '18.04'

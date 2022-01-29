@@ -1,0 +1,7 @@
+- name: reload networking
+  ansible.builtin.systemd:
+    name: networking.service
+    state: restarted
+
+- name: apply netplan configuration
+  shell: netplan apply

@@ -1,0 +1,7 @@
+nameservers:
+  server1: "{{ server1 }}"
+  server2: "{{ server2 }}"
+
+dns_servers:
+  dns1: "{{ dns1 }}"
+  dns2: "{{ dns2 }}"
